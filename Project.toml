@@ -1,0 +1,4 @@
+name = "julia_agents_examples"
+uuid = "dc4a1127-fd5f-4a54-b8cd-96fe20c92b2e"
+authors = ["Sungho Park <mrchaos@naver.com>"]
+version = "0.1.0"
