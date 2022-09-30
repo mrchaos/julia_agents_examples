@@ -1,5 +1,5 @@
 # module SCH
-ENV["DISPLAY"]="localhost:13.0"
+ENV["DISPLAY"]="localhost:10.0"
 using Agents
 
 # space = GridSpaceSingle((10,10); periodic = false)
@@ -218,12 +218,28 @@ fig
 
 rm("schelling.jld2")
 
-#--------------------------
-# 앙상블과 분산컴퓨팅
-#--------------------------
-
-
-
+#---
+# Scanning parameter ranges
+#  - ABM의 동작에 대해 다양한 매개변수의 효과에 관심이 있는 경우
+#  - parameters에 들어가는 dict의 값이 Vector타입이면 expand된다.
+#    아래의 경우 ":min_to_be_happy"와 ":numagents"는 Vector타입 이고
+#    ":griddims"는 Tuple타입으로 ":min_to_be_happy"와 ":numagents"의 Vector size의
+#    곱과 스텝(0스텝포함)의 곱만큼 데이터 row가 생긴다.
+#    4*2*(3+1)  = 32
+#
+#   - paramscan function은 병렬처리 가능하다.
+#     parallet=true로 설정하면 됨
+#    
+#---
+happyperc(moods) = count(moods) / length(moods)
+adata = [(:mood, happyperc)]
+parameters = Dict(
+    :min_to_be_happy => collect(2:5),  # expanded
+    :numagents => [200,300], # expanded
+    :griddims => (20,20), # not vector = not expanded
+)
+agent_df, model_df = paramscan(parameters, initialize; adata, agent_step!,n=3)
+agent_df
 # end # module
 nothing
 # fieldnames(SCH.SchellingAgent)
