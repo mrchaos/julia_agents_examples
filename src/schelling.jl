@@ -1,5 +1,7 @@
 # module SCH
+# GLMakie를 사용하고 싶은 경우 설정에 대해서는 https://julialang.kr/?p=3684 를 참조
 ENV["DISPLAY"]="localhost:10.0"
+
 using Agents
 
 # space = GridSpaceSingle((10,10); periodic = false)
