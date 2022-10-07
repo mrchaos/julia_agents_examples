@@ -2,3 +2,6 @@ name = "julia_agents_examples"
 uuid = "dc4a1127-fd5f-4a54-b8cd-96fe20c92b2e"
 authors = ["Sungho Park <mrchaos@naver.com>"]
 version = "0.1.0"
+
+[deps]
+Agents = "46ada45e-f475-11e8-01d0-f70cc89e6671"
