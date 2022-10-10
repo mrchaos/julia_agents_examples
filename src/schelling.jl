@@ -1,6 +1,6 @@
 # module SCH
 # GLMakie를 사용하고 싶은 경우 설정에 대해서는 https://julialang.kr/?p=3684 를 참조
-ENV["DISPLAY"]="localhost:10.0"
+ENV["DISPLAY"]="localhost:12.0"
 
 using Agents
 
@@ -10,6 +10,10 @@ using Agents
     mood::Bool
     group::Int
 end
+
+fieldnames(GridAgent{2})
+
+GridAgent{2}
 
 for (name, type) in zip(fieldnames(SchellingAgent),fieldtypes(SchellingAgent))
     println(name,"::",type)
